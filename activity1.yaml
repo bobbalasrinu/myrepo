@@ -1,10 +1,11 @@
+---
 apiVersion: v1
 kind: Pod
 metadata:
   name: hello-pod
 spec:
   containers:
-    - image: ngnix:1.23
-      name: ngnix-container
+    - image: nginx:1.23
+      name: nginx-container
       ports:
-        -containerport: 80
+        - containerPort: 80
