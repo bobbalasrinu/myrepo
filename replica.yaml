@@ -10,7 +10,7 @@ spec:
   selector: 
     matchExpression: 
       -key: app
-       Operator: In
+       operator: In
        values:
          -nginx
          -weserver
