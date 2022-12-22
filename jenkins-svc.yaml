@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata: 
-  lables:
-    name: jenkins-svc
-    key: jenkins-service
+  name: jenkins-svc-lb
 spec:
   type: LoadBalancer
+  selector:
+    app: jenkins
+    ver: "11"
   ports:
-    port: 3500
-    targetport: 8080
-    protocol: TCP
+    - name: webport
+      port: 35000
+      targetPort: 8080
+      protocol: TCP

@@ -1,9 +1,10 @@
+---
 apiVersion: apps/v1
 kind: ReplicaSet
-metadata: 
-  name: jenkins-rs
+metadata:
+  name: nginx-rs
   labels:
-    app: jenkins
+    app: nginx
 spec:
   minReadySeconds: 3
   replicas: 4
@@ -12,20 +13,19 @@ spec:
       - key: app
         operator: In
         values:
-          - jenkins
+          - nginx
           - webserver
   template:
-    metadata:
-      name: jenkins-pod
+    metadata: 
+      name: nginx-pod
       labels:
-        app: jenkins
-        ver: "11"
+        app: nginx
+        ver: "1.23"
     spec:
       containers:
-        - name: jenkins
-          image: jenkins/jenkins:lts-jdk11
-          ports: 
-            - containerPort: 8080
+        - name: nginx
+          image: nginx:1.23
+          ports:
+            - containerPort: 80
               protocol: TCP
-    
-  
+
