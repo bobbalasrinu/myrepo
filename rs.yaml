@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  - name: jenkins-rs
+    labels:
+    app: jenkins
+    ver: lts-jdk-11
+spec:
+  minReadySeconds: 3
+  replicas: 4
+  selector:
+    matchExpressions:
+      key: app
+      operator: In
+      values:
+        - jenkins
+        - webserver
+  template:
+    metadata:
+      name: jenkins-pod
+      lables:
+        app: jenkins
+        ver: "11"
+    spec:
+      containers:
+        image: jenkins/jenkins:lts-jdk11
+        name: jenkins
+        ports: 
+          - containerPort: 8080
+            protocol: TCP
+    
+  
