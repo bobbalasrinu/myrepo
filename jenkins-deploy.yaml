@@ -6,8 +6,8 @@ spec:
   minReadySeconds: 10
   replicas: 4
   selector:
-    matchExpressions:
-      - app: jenkins
+    matchLabels:
+      app: jenkins
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -16,6 +16,9 @@ spec:
   template:
     metadata:
       name: jenkins-Deploy
+      labels:
+        app: jenkins
+        version: 1.625.1
     spec:
       containers:
         - name: jenkins-pod
