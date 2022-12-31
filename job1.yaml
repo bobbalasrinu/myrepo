@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: job-alpine
-  namespce: my-space
+  namespace: my-space
 spec:
   template:
     metadata:
