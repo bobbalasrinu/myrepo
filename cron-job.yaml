@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: demo-cronjob
+  namespace: my-space
+spec:
+  schedule: * * * * 1-5
+  jobTemplate: 
+    metadata:
+      name: cronjob
+      namespace: my-space
+    spec:
+      template:
+        metadata:
+          name: cronjob-pod
+          namespace: my-space
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - image: aplpine:3
+              name: download
+              command:
+                - sleep
+                - 60s
+
+
+        
