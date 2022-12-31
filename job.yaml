@@ -1,18 +1,25 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: job
-  namesapce: my-space
+  name: demo-job
+  namespace: my-space
 spec:
   backoffLimit: 3
+  manualSelector: true
+  selector:
+    matchLabels:
+      purpose: execute
   template:
-    metadata: 
-      name: job
-      namesapce: my-space
+    metadata:
+      name: demo-pod
+      namespace: my-space
+      labels:
+        purpose: execute
     spec:
+      restartPolicy: OnFailure
       containers:
-        -name: job-pod
-         image: alpine:3
-         command:
-           - sleep
-           - 60s
+        - name: download
+          image: alpine:3
+          command:
+            - sleep
+            - 60s
