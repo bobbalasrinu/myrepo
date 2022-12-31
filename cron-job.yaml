@@ -4,7 +4,7 @@ metadata:
   name: demo-cronjob
   namespace: my-space
 spec:
-  schedule: * * * * 1-5
+  schedule: "* * * * 1-5"
   jobTemplate: 
     metadata:
       name: cronjob
