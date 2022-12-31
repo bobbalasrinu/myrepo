@@ -2,10 +2,13 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: job
+  namesapce: my-space
 spec:
   backoffLimit: 3
   template:
-    metadata: job
+    metadata: 
+      name: job
+      namesapce: my-space
     spec:
       containers:
         -name: job-pod
