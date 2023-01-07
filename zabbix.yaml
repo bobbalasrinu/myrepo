@@ -1,43 +1,70 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion:  apps/v1
+kind: StatefulSet
+
 metadata:
-  name: zabbix-deployment
+  namespace: monitoring
+  annotations:
+  labels:
+    zabbix-app: zabbix-server
+  name: zabbix-server
 spec:
-  minReadySeconds: 10
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
-      app: zabbix
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+      zabbix-app: zabbix-server  
+  serviceName: "zabbix-server"
+  #strategy:
+  #  type: Recreate
   template:
     metadata:
-      name: zabbix-Deploy
       labels:
-        app: zabbix
-        version: ol-6.0-latest
+        zabbix-app: zabbix-server
     spec:
       containers:
-        - name: zabbix-pod
-          image: zabbix/zabbix-server-mysql:ol-6.0-latest
-          ports:
-            - containerPort: 80
-              protocol: TCP
+      - image: zabbix/zabbix-server-mysql:ubuntu-4.4-latest
+        name: zabbix-server
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: zabbix-app
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_DATABASE
+                name: zabbix-app
+
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: zabbix-app
+                key:  MYSQL_USER
+
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: zabbix-app
+                key:  MYSQL_PASSWORD
+        ports:
+        - containerPort: 10051
+      restartPolicy: Always
+      
+#### Service
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: zabbix-svc-lb
+  namespace: monitoring
+  labels:
+    zabbix-app: zabbix-server
+  name: zabbix-server
 spec:
-  type: LoadBalancer
-  selector:
-    app: zabbix
-    ver: "ol-6.0-latest"
   ports:
-    - port: 35000
-      name: webport
-      targetPort: 80
-      protocol: TCP
+  - name: "10051"
+    port: 10051
+    targetPort: 10051
+  selector:
+    zabbix-app: zabbix-server
+status:
+  loadBalancer: {}
