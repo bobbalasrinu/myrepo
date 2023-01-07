@@ -5,10 +5,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: standard
+  storageClassName: managed-premium
   resources:
     requests:
-      storage: 1Gi
+      storage: "1Gi"
 
 ---
 apiVersion: v1
