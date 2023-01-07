@@ -55,7 +55,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: monitoring
   labels:
     zabbix-app: zabbix-server
   name: zabbix-server
