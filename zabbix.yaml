@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: zabbix-rs
+  labels:
+    app: zabbix
+spec:
+  minReadySeconds: 3
+  replicas: 4
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - zabbix
+          - webserver
+  template:
+    metadata: 
+      name: zabbix-pod
+      labels:
+        app: zabbix
+        ver: "1.23"
+    spec:
+      containers:
+        - name: zabbix
+          image: zabbix/zabbix-server-mysql:5.0-ubuntu-latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+
+----
+apiVersion: v1
+kind: Service
+metadata:
+  name: zabbix-svc-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: Zabbix
+    ver: "1.23"
+  ports:
+    - port: 35000
+      name: webport
+      targetPort: 80
+      protocol: TCP
