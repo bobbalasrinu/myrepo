@@ -18,11 +18,11 @@ spec:
       name: zabbix-Deploy
       labels:
         app: zabbix
-        version: 1.625.1
+        version: ol-6.0-latest
     spec:
       containers:
         - name: zabbix-pod
-          image: zabbix/zabbix-server-mysql:5.0-ubuntu-latest
+          image: zabbix/zabbix-server-mysql:ol-6.0-latest
           ports:
             - containerPort: 80
               protocol: TCP
@@ -35,7 +35,7 @@ spec:
   type: LoadBalancer
   selector:
     app: zabbix
-    ver: "1.625.1"
+    ver: "ol-6.0-latest"
   ports:
     - port: 35000
       name: webport
