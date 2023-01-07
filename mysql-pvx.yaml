@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: STANDARD
+  storageClassName: standard
   resources:
     requests:
       storage: 1Gi
