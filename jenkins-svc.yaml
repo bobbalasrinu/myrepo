@@ -6,7 +6,6 @@ spec:
   type: LoadBalancer
   selector:
     app: jenkins
-    ver: "11"
   ports:
     - name: webport
       port: 35000

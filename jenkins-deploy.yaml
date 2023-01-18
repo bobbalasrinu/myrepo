@@ -18,11 +18,11 @@ spec:
       name: jenkins-Deploy
       labels:
         app: jenkins
-        version: 1.625.1
+        version: 2.60.3
     spec:
       containers:
         - name: jenkins-pod
-          image: jenkins:1.625.1
+          image: jenkins:2.60.3
           ports:
             - containerPort: 8080
               protocol: TCP
