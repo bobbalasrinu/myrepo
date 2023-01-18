@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: demo-cronjob
+  namespace: my-space
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    metadata:
+      name: cronjob
+      namespace: my-space
+    spec:
+      backoffLimit: 3
+      template:
+        metadata:
+          name: demo-pod
+          namespace: my-space
+          labels:
+            purpose: execute
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: download
+              image: alpine:3
+              command:
+                - sleep
+                - 60s
