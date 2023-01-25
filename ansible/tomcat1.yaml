@@ -7,5 +7,4 @@
       ansible.builtin.apt:
         update_cache: yes
         name: openjdk-11-jdk
-      ansible.builtin.command:
         useradd -m -U -d /opt/tomcat -s /bin/false tomcat
