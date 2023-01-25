@@ -1,9 +1,9 @@
 ---
--name: intsall tomcat on ubuntu
- hosts: all
- boolean: yes
- tasks:
-   - name: install java-11
-     ansible.builtin.apt:
-     name: openjdk-11-jdk
-     state: present
+- name: intsall tomcat on ubuntu
+  hosts: all
+  boolean: yes
+  tasks:
+    - name: install java-11
+      ansible.builtin.apt:
+      name: openjdk-11-jdk
+      state: present
