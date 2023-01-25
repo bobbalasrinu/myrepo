@@ -23,5 +23,29 @@
       ansible.builtin.unarchive:
         src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.71/bin/apache-tomcat-9.0.71.tar.gz
         remote_src: yes
-        dest: /opt/tomcat
-        
+        dest: /opt/tomcat/
+    - name: sym link creation
+      ansible.builtin.file:
+        src: /opt/tomcat/apache-tomcat-9.0.71
+        path: /opt/tomcat/latest
+        state: link
+    - name: change permissions
+      ansible.builtin.file:
+        path: /opt/tomcat/latest
+        owner: tomcat
+        group: tomcat
+        state: directory
+    - name: shell script command
+      ansible.builtin.command: sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+    - name: systemd file copy
+      ansible.builtin.copy:
+        src: tomcat.service
+        dest: /etc/systemd/system/tomcat.service
+        owner: tomcat
+        group: tomcat
+        path: /etc/systemd/system
+    - name: systemd command
+      ansible.builtin.command: 
+        systemctl daemon-reload
+        systemctl enable --now tomcat
+        systemctl status tomcat
