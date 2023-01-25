@@ -8,5 +8,7 @@
         update_cache: yes
         name: openjdk-11-jdk
     - name: command
-      ansible.builtin.command: useradd -m -U -d /opt/tomcat -s /bin/false tomcat
+      ansible.builtin.command: 
+        cmd:
+          useradd -m -U -d /opt/tomcat -s /bin/false tomcat
         
