@@ -1,5 +1,5 @@
 ---
-- name: intsall tomcat on ubuntu
+- name: install tomcat on ubuntu
   hosts: all
   boolean: yes
   tasks:
