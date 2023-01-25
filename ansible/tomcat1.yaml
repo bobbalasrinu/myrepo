@@ -3,5 +3,6 @@
   hosts: all
   become: yes
   tasks:
-    ansible.builtin.command: sudo apt update
+    ansible.builtin.apt:
+      update
       
