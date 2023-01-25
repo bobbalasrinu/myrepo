@@ -3,6 +3,8 @@
   hosts: all
   become: yes
   tasks:
-    ansible.builtin.apt:
-      update
+    - name: java install
+      ansible.builtin.apt:
+        update_cache: yes
+        name: openjdk-11-jdk
       
