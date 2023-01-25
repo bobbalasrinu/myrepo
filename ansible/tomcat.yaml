@@ -1,7 +1,7 @@
 ---
 - name: install tomcat on ubuntu
   hosts: all
-  boolean: yes
+  become: yes
   tasks:
     - name: install java-11
       ansible.builtin.apt:
