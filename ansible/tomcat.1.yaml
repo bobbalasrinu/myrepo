@@ -1,0 +1,8 @@
+---
+- name:  tomcat on commands
+  hosts: all
+  become: yes
+  tasks:
+    ansible.builtin.command:
+      apt update
+      apt install openjdk-11-jdk
