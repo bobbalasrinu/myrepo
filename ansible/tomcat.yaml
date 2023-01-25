@@ -12,7 +12,7 @@
     - name: user group add
       ansible.builtin.user:
         name: tomcat
-        group: tomcat
+        groups: tomcat
         home: /opt/tomcat
         shell: /bin/false
         state: present
