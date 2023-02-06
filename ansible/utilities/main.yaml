@@ -3,8 +3,8 @@
   tasks:
     - name: utilities
       ansible.builtin.package:
-        - name:
-            git
+        name:
+          - git
             tree
             nano
             net-tools
