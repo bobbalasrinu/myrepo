@@ -1,10 +1,10 @@
-- name: installing utilities
+---
+- name: install utilities
   hosts: all
   tasks:
-    - name: utilities
+    - name: install utilities
       ansible.builtin.package:
-        name:
-          - git
-            tree
-            nano
-            net-tools
+        name: "{{ item }}"
+        state: present
+      become: yes
+      loop: "{{ packages }}"
