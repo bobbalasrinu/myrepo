@@ -3,7 +3,7 @@ all:
   children:
     local:
       hosts:
-        devop@localhost:
+        localhost:
           packages:
             - git
               tree
