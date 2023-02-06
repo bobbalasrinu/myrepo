@@ -1,0 +1,11 @@
+- name: installing utilities
+  hosts: all
+  tasks:
+    name: utilities
+      ansible.builtin.package:
+        - name:
+            git
+            tree
+            nano
+            net-tools
+      state: present
