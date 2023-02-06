@@ -6,6 +6,6 @@ all:
         devop@localhost:
           packages:
             - git
-              tree
-              nano
-              net-tools
+            - tree
+            - nano
+            - net-tools
