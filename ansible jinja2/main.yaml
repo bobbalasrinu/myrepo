@@ -1,0 +1,8 @@
+---
+- name: practice with dybamic variables
+  hosts: all
+  tasks:
+    - name: dynamic values
+      ansible.bultin.template:
+        src: infor.txt.j2
+        dest: /tmp/info.txt
