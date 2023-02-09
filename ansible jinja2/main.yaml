@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - name: dynamic values
-      ansible.bultin.template:
+      ansible.builtin.template:
         src: infor.txt.j2
         dest: /tmp/info.txt
