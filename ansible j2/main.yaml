@@ -2,7 +2,7 @@
 - name: dynamic values
   hosts: all
   tasks:
-    - name: dynamic values
+    - name: dynamic values frfr
       ansible.builtin.template:
         src: info.txt.j2
         dest: /tmp/info.txt
