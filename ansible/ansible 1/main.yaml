@@ -1,0 +1,9 @@
+--------
+- name: installing utilities
+  hosts: all
+  tasks:
+    name: installing utility package
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ packages }}"
