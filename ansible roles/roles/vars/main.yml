@@ -1,0 +1,7 @@
+---
+# vars file for utils
+utility:
+  - git
+  - nano
+  - openjdk-11-jdk
+  - tree
