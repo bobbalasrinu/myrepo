@@ -8,7 +8,7 @@
       - nano
       - openjdk-11-jdk
       - tree
-  task
+  tasks:
     - name: utilities
       ansible.builtin.apt:
         name= "{{ utility }}"
