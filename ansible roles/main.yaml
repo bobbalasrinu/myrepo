@@ -1,0 +1,24 @@
+----
+- name: utilities install
+  hosts: all
+  become: yes
+  vars:
+    utility:
+      - git
+      - nano
+      - openjdk-11-jdk
+      - tree
+  task
+    - name: utilities
+      ansible.builtin.apt:
+        name= "{{ utility }}"
+        state: present
+      notify:
+        - ensure ssh is running
+  handlers
+    - name: ensure ssh is running
+      ansible.builtin.systemd:
+        name: sshd
+        state: started
+    
+
