@@ -1,4 +1,4 @@
-----
+---
 - name: utilities install
   hosts: all
   become: yes
