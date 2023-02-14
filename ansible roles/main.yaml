@@ -11,7 +11,7 @@
   tasks:
     - name: utilities
       ansible.builtin.apt:
-        name= "{{ utility }}"
+        name: "{{ utility }}"
         state: present
       notify:
         - ensure ssh is running
