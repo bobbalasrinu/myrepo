@@ -3,7 +3,7 @@
 - name: utilities
   ansible.builtin.apt:
     name: "{{ utility }}"
-      update_cache: yes
-      state: present
-      notify:
-        - ensure ssh is running
+    update_cache: yes
+    state: present
+    notify:
+      - ensure ssh is running
